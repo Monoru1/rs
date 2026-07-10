@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="RS — développement web, systèmes et automatisation." />
+  <title>RS — Digital systems, built to hold</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg:#0c0c0b; --surface:#121210; --line:#282721; --ink:#edede8; --muted:#96958e; --soft:#6b6b66; --accent:#b08a56; --accent-light:#d2b78d; }
+    * { box-sizing:border-box; margin:0; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--ink); font-family:"DM Mono",monospace; font-size:13px; line-height:1.6; }
+    a { color:inherit; text-decoration:none; }
+    .shell { max-width:1260px; margin:auto; padding:0 38px; }
+    .nav { height:82px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); }
+    .brand { letter-spacing:.1em; font-size:15px; font-weight:500; } .brand span { color:var(--accent); }
+    .nav-links { display:flex; gap:28px; color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.08em; }
+    .nav-links a:hover { color:var(--ink); }
+    .small-cta { color:var(--accent-light); border-bottom:1px solid var(--accent); padding-bottom:2px; font-size:11px; text-transform:uppercase; letter-spacing:.07em; }
+    .hero { min-height:650px; display:grid; grid-template-columns:1.15fr .85fr; align-items:center; gap:80px; border-bottom:1px solid var(--line); }
+    .eyebrow { color:var(--accent-light); text-transform:uppercase; letter-spacing:.12em; font-size:10px; display:flex; gap:9px; align-items:center; margin-bottom:26px; }
+    .dot { width:7px; height:7px; background:var(--accent); border-radius:50%; box-shadow:0 0 18px #b08a5688; }
+    h1,h2 { font-family:"Playfair Display",serif; font-weight:500; letter-spacing:-.045em; line-height:1.05; }
+    h1 { font-size:clamp(48px,6.2vw,86px); max-width:800px; }
+    h1 em { color:var(--accent-light); }
+    .lead { color:var(--muted); max-width:490px; margin:28px 0 34px; font-size:14px; line-height:1.8; }
+    .button { display:inline-flex; align-items:center; gap:16px; padding:14px 18px; background:var(--accent); color:#15120d; font-size:11px; text-transform:uppercase; letter-spacing:.07em; font-weight:500; transition:.2s; }
+    .button:hover { background:var(--accent-light); transform:translateY(-2px); }
+    .terminal { background:#10100f; border:1px solid #302f29; padding:23px; position:relative; box-shadow:20px 20px 0 #151512; }
+    .terminal:before { content:"SYSTEM / RS-01"; position:absolute; top:-10px; right:15px; color:var(--soft); background:var(--bg); padding:0 7px; font-size:9px; letter-spacing:.1em; }
+    .terminal-head { color:#5d5c55; margin-bottom:17px; } .terminal p { margin:6px 0; color:#c7c6be; } .terminal .ok { color:var(--accent-light); } .cursor { animation:blink 1s steps(2) infinite; color:var(--accent); } @keyframes blink { 50%{opacity:0} }
+    section { padding:122px 0; border-bottom:1px solid var(--line); }
+    .section-top { display:flex; justify-content:space-between; gap:30px; margin-bottom:62px; }
+    .kicker { color:var(--accent); text-transform:uppercase; letter-spacing:.12em; font-size:10px; }
+    h2 { font-size:clamp(38px,4vw,58px); max-width:700px; margin-top:11px; }
+    .section-note { color:var(--muted); max-width:300px; margin-top:23px; }
+    .projects { display:grid; grid-template-columns:repeat(2,1fr); border-top:1px solid var(--line); border-left:1px solid var(--line); }
+    .project { min-height:420px; padding:27px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); display:flex; flex-direction:column; justify-content:space-between; transition:background .25s; }
+    .project:hover { background:#11110f; }
+    .project-meta { display:flex; justify-content:space-between; font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; }
+    .visual { height:155px; margin:30px 0; position:relative; overflow:hidden; background:linear-gradient(140deg,#202019,#0e0e0d); }
+    .visual:after { content:""; position:absolute; inset:0; background:linear-gradient(115deg,transparent 30%,#b08a562b 30.3%,transparent 31%); }
+    .visual b { position:absolute; left:18px; bottom:14px; z-index:1; font-family:"Playfair Display",serif; font-size:29px; font-weight:500; letter-spacing:-.04em; }
+    .visual.v2 { background:linear-gradient(135deg,#29302b,#0e0e0d); } .visual.v3 { background:linear-gradient(135deg,#553b29,#15100d); } .visual.v4 { background:linear-gradient(135deg,#222427,#0e0e0d); }
+    .project h3 { font-family:"Playfair Display",serif; font-size:28px; font-weight:500; letter-spacing:-.03em; } .project p { color:var(--muted); max-width:440px; margin:8px 0 18px; }
+    .link { font-size:10px; color:var(--accent-light); letter-spacing:.08em; text-transform:uppercase; }
+    .capabilities { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); }
+    .cap { padding:26px 22px 24px 0; margin-right:22px; border-right:1px solid var(--line); } .cap:last-child { border:0; }
+    .cap-num { color:var(--accent); font-size:10px; } .cap h3 { font-size:13px; font-weight:500; margin:35px 0 10px; } .cap p { color:var(--muted); font-size:12px; }
+    .process { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:25px; } .step { padding-top:15px; border-top:1px solid var(--accent); color:var(--muted); } .step b { display:block; color:var(--ink); margin-bottom:8px; font-weight:500; }
+    .about { display:grid; grid-template-columns:.8fr 1.2fr; gap:80px; } .about p { font-family:"Playfair Display",serif; font-size:clamp(26px,3vw,42px); line-height:1.2; letter-spacing:-.035em; }
+    .about aside { color:var(--muted); align-self:end; max-width:370px; }
+    .contact { text-align:center; padding:145px 20px; } .contact h2 { margin:14px auto 25px; max-width:800px; } .contact p { color:var(--muted); margin-bottom:31px; }
+    footer { display:flex; justify-content:space-between; padding:25px 0; color:var(--soft); font-size:10px; text-transform:uppercase; letter-spacing:.07em; }
+    @media (max-width:760px) { .shell { padding:0 20px; } .nav-links { display:none; } .hero,.about { grid-template-columns:1fr; gap:45px; padding:85px 0; min-height:auto; } section { padding:78px 0; } .section-top { display:block; margin-bottom:40px; } .projects,.capabilities,.process { grid-template-columns:1fr; } .project { min-height:360px; } .cap { border-right:0; border-bottom:1px solid var(--line); margin:0; padding:25px 0; } footer { gap:12px; flex-wrap:wrap; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <nav class="nav"><a class="brand" href="#top">R<span>.</span>S</a><div class="nav-links"><a href="#work">Projets</a><a href="#services">Expertise</a><a href="#process">Process</a></div><a class="small-cta" href="mailto:sakryad@gmail.com">Démarrer un projet ↗</a></nav>
+    <main id="top">
+      <section class="hero">
+        <div><div class="eyebrow"><i class="dot"></i> Disponible pour nouvelles missions</div><h1>Je construis des systèmes <em>qui tiennent</em>, pas des démos qui brillent.</h1><p class="lead">Développement web, produits métier et automatisations fiables. Pensés pour être utiles, maintenables et prêts à évoluer.</p><a class="button" href="mailto:sakryad@gmail.com">Parlons de votre projet <span>→</span></a></div>
+        <div class="terminal"><div class="terminal-head">$ rs.init --project "votre-brief"</div><p>&gt; Architecture........ <span class="ok">READY</span></p><p>&gt; Interface.......... <span class="ok">READY</span></p><p>&gt; Sécurité........... <span class="ok">CHECKED</span></p><p>&gt; Livraison.......... <span class="ok">DEPLOYED</span></p><p>&gt; status: <span class="ok">building something useful</span><span class="cursor">_</span></p></div>
+      </section>
+      <section id="work"><div class="section-top"><div><div class="kicker">01 / Sélection</div><h2>Des projets conçus pour servir une vraie activité.</h2></div><p class="section-note">Chaque projet relie une identité forte à un usage concret : réserver, commander, gérer, convaincre.</p></div>
+        <div class="projects">
+          <article class="project"><div><div class="project-meta"><span>01 / Hospitality</span><span>React · Vite</span></div><div class="visual"><b>Le Baratie</b></div><h3>Le Baratie</h3><p>Une vitrine premium pour un bar mobile : prestations, événements et prise de contact directe par WhatsApp.</p></div><span class="link">Étude de cas bientôt disponible ↗</span></article>
+          <article class="project"><div><div class="project-meta"><span>02 / Retail</span><span>E-commerce</span></div><div class="visual v2"><b>LMC</b></div><h3>La Maison du Confort</h3><p>Une expérience de marque chaleureuse pour commander des collections de pyjamas et préparer les temps forts commerciaux.</p></div><span class="link">Étude de cas bientôt disponible ↗</span></article>
+          <article class="project"><div><div class="project-meta"><span>03 / Transport</span><span>Multi-page</span></div><div class="visual v3"><b>SM TRACO</b></div><h3>SM TRACO</h3><p>Une présence digitale structurée pour rendre une entreprise de transit et de logistique plus lisible et crédible.</p></div><span class="link">Étude de cas bientôt disponible ↗</span></article>
+          <article class="project"><div><div class="project-meta"><span>04 / Automotive</span><span>Product concept</span></div><div class="visual v4"><b>VORTEX</b></div><h3>VORTEX</h3><p>Un concept automobile à haute exigence visuelle, pensé comme démonstration de direction artistique et de produit digital.</p></div><span class="link">En construction ↗</span></article>
+        </div>
+      </section>
+      <section id="services"><div class="section-top"><div><div class="kicker">02 / Expertise</div><h2>Pas des lignes de code. Des réponses à des problèmes précis.</h2></div></div><div class="capabilities"><div class="cap"><div class="cap-num">01</div><h3>Sites qui convertissent</h3><p>Des interfaces claires, rapides et alignées avec la valeur réelle de votre marque.</p></div><div class="cap"><div class="cap-num">02</div><h3>Produits métier</h3><p>Des outils sur mesure pour simplifier une opération, centraliser les données ou faire gagner du temps.</p></div><div class="cap"><div class="cap-num">03</div><h3>Automatisation utile</h3><p>Des flux fiables qui enlèvent les tâches répétitives sans ajouter de complexité inutile.</p></div><div class="cap"><div class="cap-num">04</div><h3>Fondations solides</h3><p>Architecture, authentification et déploiement traités dès le départ, pas ajoutés à la fin.</p></div></div></section>
+      <section id="process"><div class="section-top"><div><div class="kicker">03 / Méthode</div><h2>Un process simple, visible, sans zone floue.</h2></div></div><div class="process"><div class="step"><b>01 — Cadrer</b>On clarifie l’objectif, les utilisateurs et la priorité réelle.</div><div class="step"><b>02 — Construire</b>Design et développement avancent ensemble pour éviter les mauvaises surprises.</div><div class="step"><b>03 — Vérifier</b>Chaque flux critique est testé avant la mise en ligne.</div><div class="step"><b>04 — Livrer</b>Le produit est déployé, documenté et prêt à être utilisé.</div></div></section>
+      <section class="about"><div><div class="kicker">04 / RS</div></div><div><p>La technologie doit donner de l’élan à une activité — pas devenir un nouveau problème à gérer.</p><aside>RS accompagne les projets qui ont besoin d’une présence digitale sérieuse ou d’un système mieux pensé. Basé en France, avec une approche directe : comprendre vite, construire proprement, livrer quelque chose qui tient.</aside></div></section>
+      <section class="contact" id="contact"><div class="kicker">05 / Contact</div><h2>Vous avez le projet. Construisons ce qui doit le faire avancer.</h2><p>Une idée, un besoin précis ou un système à remettre à plat ? Écrivez-moi directement.</p><a class="button" href="mailto:sakryad@gmail.com?subject=Projet%20RS">sakryad@gmail.com <span>→</span></a></section>
+    </main>
+    <footer><span>© 2026 RS</span><span>France · Disponible à distance</span><a href="mailto:sakryad@gmail.com">sakryad@gmail.com</a></footer>
+  </div>
+</body>
+</html>
